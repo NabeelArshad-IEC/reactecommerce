@@ -3,44 +3,44 @@ import styled from "styled-components";
 import { useCartContext } from "./context/cart_context";
 import CartItem from "./components/CartItem";
 import { Button } from "./styles/Button";
-import FormatPrice from "./Helpers/FormatPrice";
+
 
 const Cart = () => {
-  const { cart, clearCart, total_price, shipping_fee } = useCartContext();
+  const { cart, clearCart } = useCartContext();
 
-  // State to track if the cart is empty
+
   const [isEmpty, setIsEmpty] = useState(cart.length === 0);
 
-  // State for managing popup visibility
+
   const [showPopup, setShowPopup] = useState(false);
 
-  // State to store the generated order number
+
   const [orderNumber, setOrderNumber] = useState("");
 
-  // Function to generate a random order number
+
   const generateRandomOrderNumber = () => {
     const randomNumber = Math.floor(Math.random() * 1000000);
     return `#order${randomNumber}`;
   };
 
-  // Function to handle the checkout process
+
   const handleCheckout = () => {
-    // Handle the checkout logic, e.g., creating an order, etc.
+ 
     const generatedOrderNumber = generateRandomOrderNumber();
     console.log("Order placed with number:", generatedOrderNumber);
 
-    // For demonstration purposes, clear the cart after placing the order
+
     clearCart();
 
-    // Update the state to indicate that the cart is now empty
+   
     setIsEmpty(true);
 
-    // Update the state to show the popup with the order number
+   
     setOrderNumber(generatedOrderNumber);
     setShowPopup(true);
   };
 
-  // Function to close the popup
+
   const handleClosePopup = () => {
     setShowPopup(false);
     setOrderNumber("");
@@ -56,7 +56,7 @@ const Cart = () => {
         ) : (
           <div>
             <div className="cart_heading grid grid-five-column">
-              {/* ... (your existing cart headings) */}
+         
             </div>
             <hr />
             <div className="cart-item">
@@ -72,15 +72,13 @@ const Cart = () => {
               </Button>
             </div>
             <div className="order-total--amount">
-              <div className="order-total--subdata">
-                {/* ... (your existing order total_amount content) */}
-              </div>
+             
             </div>
           </div>
         )}
       </div>
 
-      {/* Popup message */}
+     
       {showPopup && (
         <Popup>
           <div>
@@ -228,13 +226,7 @@ const Wrapper = styled.section`
     justify-content: flex-end;
     align-items: flex-end;
 
-    .order-total--subdata {
-      border: 0.1rem solid #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      gap: 1.8rem;
-      padding: 3.2rem;
-    }
+   
     div {
       display: flex;
       gap: 3.2rem;

@@ -193,11 +193,13 @@ const Nav = () => {
             </NavLink>
           </li>
           <li>
-        {/* Use NavLink to navigate to the login page */}
-        <NavLink to="/loginbutton" className="navbar-link">
-          Login
-        </NavLink>
-      </li>
+            <NavLink
+              to="/login"
+              className="navbar-link "
+              onClick={() => setMenuIcon(false)}>
+              login
+            </NavLink>
+          </li>
           <li>
             <NavLink to="/cart" className="navbar-link cart-trolley--link">
               <FiShoppingCart className="cart-trolley" />
