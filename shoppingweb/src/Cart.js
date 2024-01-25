@@ -1,76 +1,101 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useCartContext } from "./context/cart_context";
 import CartItem from "./components/CartItem";
-import { NavLink } from "react-router-dom";
 import { Button } from "./styles/Button";
 import FormatPrice from "./Helpers/FormatPrice";
 
 const Cart = () => {
   const { cart, clearCart, total_price, shipping_fee } = useCartContext();
-  // console.log("🚀 ~ file: Cart.js ~ line 6 ~ Cart ~ cart", cart);
 
-  if (cart.length === 0) {
-    return (
-      <EmptyDiv>
-        <h3>No Cart in Item </h3>
-      </EmptyDiv>
-    );
-  }
+  // State to track if the cart is empty
+  const [isEmpty, setIsEmpty] = useState(cart.length === 0);
+
+  // State for managing popup visibility
+  const [showPopup, setShowPopup] = useState(false);
+
+  // State to store the generated order number
+  const [orderNumber, setOrderNumber] = useState("");
+
+  // Function to generate a random order number
+  const generateRandomOrderNumber = () => {
+    const randomNumber = Math.floor(Math.random() * 1000000);
+    return `#order${randomNumber}`;
+  };
+
+  // Function to handle the checkout process
+  const handleCheckout = () => {
+    // Handle the checkout logic, e.g., creating an order, etc.
+    const generatedOrderNumber = generateRandomOrderNumber();
+    console.log("Order placed with number:", generatedOrderNumber);
+
+    // For demonstration purposes, clear the cart after placing the order
+    clearCart();
+
+    // Update the state to indicate that the cart is now empty
+    setIsEmpty(true);
+
+    // Update the state to show the popup with the order number
+    setOrderNumber(generatedOrderNumber);
+    setShowPopup(true);
+  };
+
+  // Function to close the popup
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    setOrderNumber("");
+  };
 
   return (
     <Wrapper>
       <div className="container">
-        <div className="cart_heading grid grid-five-column">
-          <p>Item</p>
-          <p className="cart-hide">Price</p>
-          <p>Quantity</p>
-          <p className="cart-hide">Subtotal</p>
-          <p>Remove</p>
-        </div>
-        <hr />
-        <div className="cart-item">
-          {cart.map((curElem) => {
-            return <CartItem key={curElem.id} {...curElem} />;
-          })}
-        </div>
-        <hr />
-        <div className="cart-two-button">
-         
-            <Button> check out</Button>
-         
-          <Button className="btn btn-clear" onClick={clearCart}>
-            clear cart
-          </Button>
-        </div>
-
-        {/* order total_amount */}
-        <div className="order-total--amount">
-          <div className="order-total--subdata">
-            <div>
-              <p>subtotal:</p>
-              <p>
-                <FormatPrice price={total_price} />
-              </p>
-            </div>
-            <div>
-              <p>shipping fee:</p>
-              <p>
-                <FormatPrice price={shipping_fee} />
-              </p>
+        {isEmpty ? (
+          <EmptyDiv>
+            <h3>No Cart in Item </h3>
+          </EmptyDiv>
+        ) : (
+          <div>
+            <div className="cart_heading grid grid-five-column">
+              {/* ... (your existing cart headings) */}
             </div>
             <hr />
-            <div>
-              <p>order total:</p>
-              <p>
-                <FormatPrice price={shipping_fee + total_price} />
-              </p>
+            <div className="cart-item">
+              {cart.map((curElem) => (
+                <CartItem key={curElem.id} {...curElem} />
+              ))}
+            </div>
+            <hr />
+            <div className="cart-two-button">
+              <Button onClick={handleCheckout}>Checkout</Button>
+              <Button className="btn btn-clear" onClick={clearCart}>
+                Clear Cart
+              </Button>
+            </div>
+            <div className="order-total--amount">
+              <div className="order-total--subdata">
+                {/* ... (your existing order total_amount content) */}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
+
+      {/* Popup message */}
+      {showPopup && (
+        <Popup>
+          <div>
+            <p>Order Placed Successfully!</p>
+            <p>Order Number: {orderNumber}</p>
+            <Button onClick={handleClosePopup}>Close</Button>
+          </div>
+        </Popup>
+      )}
     </Wrapper>
   );
 };
+
+
+// Styled components
 
 const EmptyDiv = styled.div`
   display: grid;
@@ -257,6 +282,20 @@ const Wrapper = styled.section`
       }
     }
   }
+
+
+  `;
+  const Popup = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 10rem;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
 `;
+
 
 export default Cart;

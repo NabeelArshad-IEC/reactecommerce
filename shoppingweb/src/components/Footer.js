@@ -8,26 +8,12 @@ const Footer = () => {
   return (
     <>
       <Wrapper>
-        <section className="contact-short">
-          <div className="grid grid-two-column">
-            <div>
-              <h3>Ready to get started?</h3>
-              <h3>Talk to us today</h3>
-            </div>
-
-            <div>
-              <Button className="btn hireme-btn">
-                <NavLink to="/"> Get Started </NavLink>
-              </Button>
-            </div>
-          </div>
-        </section>
-        {/* footer section */}
+        
 
         <footer>
           <div className="container grid grid-four-column">
             <div className="footer-about">
-              <h3>Thapa Technical</h3>
+              <h3>Desgin & Sense</h3>
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
             </div>
             <div className="footer-subscribe">

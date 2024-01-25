@@ -183,14 +183,7 @@ const Nav = () => {
               About
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/products"
-              className="navbar-link "
-              onClick={() => setMenuIcon(false)}>
-              Products
-            </NavLink>
-          </li>
+          
           <li>
             <NavLink
               to="/contact"
@@ -199,6 +192,12 @@ const Nav = () => {
               Contact
             </NavLink>
           </li>
+          <li>
+        {/* Use NavLink to navigate to the login page */}
+        <NavLink to="/loginbutton" className="navbar-link">
+          Login
+        </NavLink>
+      </li>
           <li>
             <NavLink to="/cart" className="navbar-link cart-trolley--link">
               <FiShoppingCart className="cart-trolley" />
