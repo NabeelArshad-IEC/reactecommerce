@@ -19,31 +19,26 @@ const FeatureProduct = () => {
     <Wrapper className="section">
       <div className="container">
         <div className="common-heading">Design&Sense Products</div>
-        
-        <div className="buttons-row">
-          <div className="spacer"></div>
-          <div className="button-container">
 
-          <button
-              className="custom-button"
-              onClick={() => setSelectedCategory(null)}
-            >
-              All
-            </button>
-            <button
-              className="custom-button"
-              onClick={() => setSelectedCategory("mobile")}
-            >
-              Mobile
-            </button>
-            <button
-              className="custom-button"
-              onClick={() => setSelectedCategory("tablet")}
-            >
-              Hot
-            </button>
-           
-          </div>
+        <div className="tabs">
+          <Tab
+            active={selectedCategory === null}
+            onClick={() => setSelectedCategory(null)}
+          >
+            All
+          </Tab>
+          <Tab
+            active={selectedCategory === "mobile"}
+            onClick={() => setSelectedCategory("mobile")}
+          >
+            Mobile
+          </Tab>
+          <Tab
+            active={selectedCategory === "tablet"}
+            onClick={() => setSelectedCategory("tablet")}
+          >
+            Tablet
+          </Tab>
         </div>
 
         <div className="grid grid-three-column">
@@ -55,6 +50,7 @@ const FeatureProduct = () => {
     </Wrapper>
   );
 };
+
 const Wrapper = styled.section`
   padding: 9rem 0;
   background-color: ${({ theme }) => theme.colors.bg};
@@ -78,7 +74,7 @@ const Wrapper = styled.section`
       left: 0;
       width: 0%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.2);
       transition: all 0.2s linear;
       cursor: pointer;
     }
@@ -184,7 +180,24 @@ padding:10px 107px;
   .custom-button:hover {
     color: #FFFFFF; /* Change text color on hover */
     background-color: #0C6980; /* Change background color on hover */
-}
+
+    .tabs {
+      display: flex;
+      margin-bottom: 1rem;
+  }
+`;
+const Tab = styled.button`
+  border: 1px solid #0C6980;
+  color: ${({ active }) => (active ? "#FFFFFF" : "#0C6980")};
+  background-color: ${({ active }) => (active ? "#0C6980" : "transparent")};
+  padding: 1rem 3rem;
+  cursor: pointer;
+  margin-left: 10px;
+
+  &:hover {
+    color: #FFFFFF;
+    background-color: #0C6980;
+  }
 `;
 
 export default FeatureProduct;

@@ -20,12 +20,12 @@ const SingleProduct = () => {
   const { id } = useParams();
 
   const {
-    id: alias,
+   
     name,
-    company,
+   
     price,
     description,
-    category,
+    
     stock,
     stars,
     reviews,
@@ -55,14 +55,9 @@ const SingleProduct = () => {
             <h2>{name}</h2>
             <Star stars={stars} reviews={reviews} />
 
-            <p className="product-data-price">
-              MRP:
-              <del>
-                <FormatPrice price={price + 250000} />
-              </del>
-            </p>
+          
             <p className="product-data-price product-data-real-price">
-              Deal of the Day: <FormatPrice price={price} />
+             Price: <FormatPrice price={price} />
             </p>
             <p>{description}</p>
             <div className="product-data-warranty">

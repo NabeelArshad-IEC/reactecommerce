@@ -6,7 +6,7 @@ import Home from "./Home";
 import Contact from "./Contact";
 import Cart from "./Cart";
 import SingleProduct from "./SingleProduct";
-import Products from "./Products";
+
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
@@ -46,7 +46,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
+        
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<LoginButton />} />
           <Route path="/singleproduct/:id" element={<SingleProduct />} />

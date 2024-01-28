@@ -1,6 +1,5 @@
-// Checkout.js
 
-import React, { useState } from "react"; // Import useState from React
+import React, { useState } from "react"; 
 import styled from "styled-components";
 import { Button } from "./styles/Button";
 
@@ -8,12 +7,12 @@ const Checkout = ({ onClose }) => {
   const [showPopup, setShowPopup] = useState(true);
 
   const handleCheckout = () => {
-    // Perform checkout logic here
+  
 
-    // Show the success message
+   
     setShowPopup(true);
 
-    // You can also close the popup after a certain delay if needed
+
     setTimeout(() => {
       setShowPopup(false);
       onClose();
@@ -23,10 +22,10 @@ const Checkout = ({ onClose }) => {
   return (
     <CheckoutWrapper>
       <h2>Checkout</h2>
-      {/* Your checkout form and details go here */}
+     
       <Button onClick={handleCheckout}>Place Order</Button>
 
-      {/* Popup message */}
+   
       {showPopup && (
         <PopupMessage>
           <p>Order placed successfully!</p>
